@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,22 +13,23 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.sagoo.assingment_bigstep_umesh.Activities.MusicDetailsActivity;
+import com.example.sagoo.assingment_bigstep_umesh.Activities.VideoDetailActivity;
 import com.example.sagoo.assingment_bigstep_umesh.Models.Music;
+import com.example.sagoo.assingment_bigstep_umesh.Models.Video;
 import com.example.sagoo.assingment_bigstep_umesh.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class MusicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class VideoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
-    private List<Music> musicList;
+    private List<Video> videosList;
     private static LayoutInflater inflater = null;
 
-    public MusicAdapter(FragmentActivity context, List<Music> musicList) {
+    public VideoAdapter(FragmentActivity context, List<Video> videosList) {
         this.context = context;
-        this.musicList = musicList;
+        this.videosList = videosList;
         inflater = (LayoutInflater) context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -45,18 +45,18 @@ public class MusicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         final ViewHolder itemHolder = (ViewHolder) viewHolder;
         showImage(position,itemHolder);
-        itemHolder.names.setText(musicList.get(position).getTrackName());
+        itemHolder.names.setText(videosList.get(position).getTrackName());
     }
 
     private void showImage(int position, ViewHolder itemHolder) {
         Picasso.with(context)
-                .load(musicList.get(position).getArtistImgUrl())
+                .load(videosList.get(position).getArtistImgUrl())
                 .into(itemHolder.imgArtist);
     }
 
     @Override
     public int getItemCount() {
-        return musicList.size();
+        return videosList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -74,12 +74,8 @@ public class MusicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             rvItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context, MusicDetailsActivity.class);
-                    intent.putExtra("audio_url",musicList.get(getLayoutPosition()).getPreviewUrl());
-                    intent.putExtra("profile_url",musicList.get(getLayoutPosition()).getArtistImgUrl());
-                    intent.putExtra("song_name",musicList.get(getLayoutPosition()).getTrackName());
-                    intent.putExtra("artist_name",musicList.get(getLayoutPosition()).getArtistName());
-                    intent.putExtra("price",musicList.get(getLayoutPosition()).getTrackPrice());
+                    Intent intent = new Intent(context,VideoDetailActivity.class);
+                    intent.putExtra("url",videosList.get(getLayoutPosition()).getPreviewUrl());
                     context.startActivity(intent);
 
                 }

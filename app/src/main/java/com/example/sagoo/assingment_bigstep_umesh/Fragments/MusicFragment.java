@@ -4,13 +4,16 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.sagoo.assingment_bigstep_umesh.Adapters.MusicAdapter;
@@ -31,7 +34,7 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-public class MusicFragment extends Fragment {
+public class MusicFragment extends Fragment{
 
     String url = "https://itunes.apple.com/search";
     private RecyclerView rvMusic;
@@ -47,8 +50,10 @@ public class MusicFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if(isConnectionAvailable(getActivity()))
-        getMusicDataFromApi();
-        else Toast.makeText(getActivity(),"No Newtwork Connection",Toast.LENGTH_SHORT).show();
+            getMusicDataFromApi();
+        else
+            Toast.makeText(getActivity(),"No Newtwork Connection",Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -61,7 +66,6 @@ public class MusicFragment extends Fragment {
         musicAdapter = new MusicAdapter(getActivity(),musicList);
         rvMusic.setAdapter(musicAdapter);
         rvMusic.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         return myFragmentView;
     }
 
@@ -76,7 +80,6 @@ public class MusicFragment extends Fragment {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 try {
                     final String response = new String(responseBody, "UTF-8");
-                    Log.d("value"," step 0 " + response);
                     parseMusicData(response);
                     musicAdapter.notifyDataSetChanged();
                 } catch (UnsupportedEncodingException e) {
@@ -86,8 +89,9 @@ public class MusicFragment extends Fragment {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Log.d("data failure","  ");
+
             }
+
       });
     }
 
@@ -142,8 +146,6 @@ public class MusicFragment extends Fragment {
                     musicList.add(music);
 
                 }
-                Log.d("values","step 4  trackable names" + musicList.get(1).getTrackName());
-
             }
 
 
@@ -172,5 +174,6 @@ public class MusicFragment extends Fragment {
         }
         return false;
     }
+
 
 }

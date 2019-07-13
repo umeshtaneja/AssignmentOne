@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.MusicDetailsActivity"
+    android:orientation="vertical">
+
+   <de.hdodenhof.circleimageview.CircleImageView
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       android:id="@+id/img_artist"
+       android:layout_marginTop="50dp"
+       android:src="@mipmap/ic_launcher"
+       android:layout_width="match_parent"
+       android:layout_height="100dp"
+       app:civ_border_color="@null"
+       app:civ_border_width="0dp" />
+
+   <TextView
+       android:id="@+id/tv_track_name"
+       android:layout_below="@id/img_artist"
+       android:layout_marginTop="20dp"
+       android:layout_marginLeft="10dp"
+       android:textSize="25sp"
+       android:text="song name"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content" />
+
+   <TextView
+       android:id="@+id/tv_artist_name"
+       android:layout_below="@id/tv_track_name"
+       android:layout_marginTop="20dp"
+       android:layout_marginLeft="10dp"
+       android:textSize="25sp"
+       android:text="artist name"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content" />
+
+   <TextView
+       android:id="@+id/tv_price"
+       android:layout_below="@+id/tv_artist_name"
+       android:layout_marginTop="20dp"
+       android:layout_marginLeft="10dp"
+       android:textSize="25sp"
+       android:text="price"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content" />
+
+   <ImageView
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       android:id="@+id/img_play"
+       android:layout_alignParentBottom="true"
+       android:layout_marginBottom="50dp"
+       android:layout_width="wrap_content"
+       android:layout_centerInParent="true"
+       android:layout_height="70sp"
+       android:layout_gravity="bottom"
+       android:layout_marginTop="50sp"
+       android:src="@drawable/play_icon"/>
+
+   <ImageView
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       android:id="@+id/img_pause"
+       android:layout_alignParentBottom="true"
+       android:layout_marginBottom="50dp"
+       android:visibility="gone"
+       android:layout_width="wrap_content"
+       android:layout_centerInParent="true"
+       android:layout_height="70sp"
+       android:layout_gravity="bottom"
+       android:layout_marginTop="50sp"
+       android:src="@drawable/img_pause"/>
+
+
+</RelativeLayout>

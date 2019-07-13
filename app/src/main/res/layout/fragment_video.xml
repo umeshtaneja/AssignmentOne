@@ -6,10 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.MusicFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello Video"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_videos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+        </android.support.v7.widget.RecyclerView>
+
 
 </RelativeLayout>
