@@ -33,11 +33,8 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-
 public class VideoFragment extends Fragment {
 
-    String url = "https://itunes.apple.com/search";
-    private RecyclerView rvVideos;
     private VideoAdapter VideoAdapter;
     List<Video> videosList = new ArrayList<>();
 
@@ -52,7 +49,7 @@ public class VideoFragment extends Fragment {
         if(isConnectionAvailable(getActivity()))
             getMusicDataFromApi();
         else
-            Toast.makeText(getActivity(),"No Newtwork Connection",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"No Network Connection",Toast.LENGTH_SHORT).show();
 
     }
 
@@ -62,7 +59,7 @@ public class VideoFragment extends Fragment {
                              Bundle savedInstanceState) {
         View myFragmentView = inflater.inflate(R.layout.fragment_video, container, false);
 
-        rvVideos = myFragmentView.findViewById(R.id.rv_videos);
+        RecyclerView rvVideos = myFragmentView.findViewById(R.id.rv_videos);
         VideoAdapter = new VideoAdapter(getActivity(),videosList);
         rvVideos.setAdapter(VideoAdapter);
         rvVideos.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -77,6 +74,7 @@ public class VideoFragment extends Fragment {
         params.put("term", "Michael jackson");
         params.put("media", "musicVideo");
 
+        String url = "https://itunes.apple.com/search";
         client.post(url, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -96,6 +94,7 @@ public class VideoFragment extends Fragment {
             }
         });
     }
+
 
     private void parseVideosData(String response) {
         int noOfResults = 0;

@@ -10,7 +10,7 @@ import com.example.sagoo.assingment_bigstep_umesh.Fragments.VideoFragment;
 
 public class TabsAdapter extends FragmentStatePagerAdapter {
 
-    int mNumOfTabs;
+    private int mNumOfTabs;
 
     public  TabsAdapter(FragmentManager fm, int NoOfTabs){
         super(fm);
@@ -24,8 +24,8 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
                 return new MusicFragment();
             case 1:
                 return new VideoFragment();
-            case 2:
-                return new HistoryFragment();
+            /*case 2:
+                return new HistoryFragment();*/
             default:
                 return null;
         }

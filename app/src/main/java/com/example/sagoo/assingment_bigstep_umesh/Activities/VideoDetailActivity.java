@@ -1,5 +1,6 @@
 package com.example.sagoo.assingment_bigstep_umesh.Activities;
 
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -46,6 +47,13 @@ public class VideoDetailActivity extends AppCompatActivity {
             // TODO: handle exception
             Toast.makeText(this, "Error connecting", Toast.LENGTH_SHORT).show();
         }
+
+        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                finish();
+            }
+        });
     }
 
 

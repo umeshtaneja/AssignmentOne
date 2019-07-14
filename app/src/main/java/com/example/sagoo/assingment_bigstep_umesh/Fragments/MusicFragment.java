@@ -36,10 +36,8 @@ import cz.msebera.android.httpclient.Header;
 
 public class MusicFragment extends Fragment{
 
-    String url = "https://itunes.apple.com/search";
-    private RecyclerView rvMusic;
     private MusicAdapter musicAdapter;
-    List<Music> musicList = new ArrayList<>();
+    private List<Music> musicList = new ArrayList<>();
 
     public MusicFragment() {
         // Required empty public constructor
@@ -52,29 +50,32 @@ public class MusicFragment extends Fragment{
         if(isConnectionAvailable(getActivity()))
             getMusicDataFromApi();
         else
-            Toast.makeText(getActivity(),"No Newtwork Connection",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"No Network Connection",Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View myFragmentView = inflater.inflate(R.layout.fragment_music, container, false);
+        RecyclerView rvMusic = myFragmentView.findViewById(R.id.rvMusic);
 
-        rvMusic = myFragmentView.findViewById(R.id.rvMusic);
         musicAdapter = new MusicAdapter(getActivity(),musicList);
         rvMusic.setAdapter(musicAdapter);
         rvMusic.setLayoutManager(new LinearLayoutManager(getActivity()));
         return myFragmentView;
     }
 
+    /*
+    For getting the data from web service.
+     */
     private void getMusicDataFromApi() {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.put("term", "Michael jackson");
         params.put("media", "music");
 
+        String url = "https://itunes.apple.com/search";
         client.post(url, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -91,10 +92,12 @@ public class MusicFragment extends Fragment{
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 
             }
-
       });
     }
 
+    /*
+     for parsing the Music data to model.
+     */
     private void parseMusicData(String response) {
         int noOfResults = 0;
         JSONObject jsonObject = null;
@@ -148,18 +151,24 @@ public class MusicFragment extends Fragment{
                 }
             }
 
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
+    /*
+    To check the validation of the json key
+     */
     public boolean isValid(JSONObject jsonObject, String key) throws JSONException {
         if (jsonObject == null || key == null)
             return false;
         return (jsonObject.has(key) && !jsonObject.isNull(key));
     }
 
+
+    /*
+      For checking the net connection , It can me made Common for other classes to use.
+     */
     public boolean isConnectionAvailable(Context context) {
 
         ConnectivityManager connectivityManager = (ConnectivityManager) context

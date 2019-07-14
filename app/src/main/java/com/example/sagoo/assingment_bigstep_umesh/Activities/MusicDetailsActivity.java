@@ -68,9 +68,7 @@ public class MusicDetailsActivity extends AppCompatActivity {
         tvPrice.setText("Price : "+ price);
 
         LoadProfile();
-
     }
-
 
     private void PlayMusic() {
         mPlayer = new MediaPlayer();
@@ -88,7 +86,8 @@ public class MusicDetailsActivity extends AppCompatActivity {
         mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                Toast.makeText(getApplicationContext(),"End",Toast.LENGTH_SHORT).show();
+                imgPause.setVisibility(View.GONE);
+                imgPlay.setVisibility(View.VISIBLE);
             }
         });
     }

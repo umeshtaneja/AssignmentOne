@@ -8,7 +8,6 @@ public class Music implements Parcelable{
     private String artistName;
     private String trackName;
     private Double trackPrice;
-    private String releaseDate;
     private String artistImgUrl;
     private String previewUrl;
 
@@ -19,7 +18,6 @@ public class Music implements Parcelable{
         artistName = in.readString();
         trackName = in.readString();
         trackPrice = in.readDouble();
-        releaseDate = in.readString();
         artistImgUrl = in.readString();
         previewUrl = in.readString();
     }
@@ -60,14 +58,6 @@ public class Music implements Parcelable{
         this.trackPrice = trackPrice;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
     public String getArtistImgUrl() {
         return artistImgUrl;
     }
@@ -94,7 +84,6 @@ public class Music implements Parcelable{
         parcel.writeString(artistName);
         parcel.writeString(trackName);
         parcel.writeDouble(trackPrice);
-        parcel.writeString(releaseDate);
         parcel.writeString(artistImgUrl);
         parcel.writeString(previewUrl);
     }

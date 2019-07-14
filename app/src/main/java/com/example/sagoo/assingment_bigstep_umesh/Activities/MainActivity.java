@@ -9,21 +9,22 @@ import android.os.Bundle;
 import com.example.sagoo.assingment_bigstep_umesh.Adapters.TabsAdapter;
 import com.example.sagoo.assingment_bigstep_umesh.R;
 
-public class MainActivity extends AppCompatActivity {
+/*
+    Base activity with holds ths Tab layout and View Pager for different Fragments.
+*/
 
-    private TabLayout tabLayout;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tabLayout = findViewById(R.id.tab_layout);
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Music"));
         tabLayout.addTab(tabLayout.newTab().setText("Videos"));
-        tabLayout.addTab(tabLayout.newTab().setText("History"));
+//      tabLayout.addTab(tabLayout.newTab().setText("History"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
 
         final ViewPager viewPager =(ViewPager)findViewById(R.id.view_pager);
         TabsAdapter tabsAdapter = new TabsAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
